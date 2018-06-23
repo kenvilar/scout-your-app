@@ -9,6 +9,18 @@ class Post extends Model
 {
     use Searchable;
 
+    /**
+     * Customize the elements that will be searchable
+     * @return array
+     */
+    public function toSearchableArray()
+    {
+        return [
+            'title',
+            'body',
+        ];
+    }
+
     protected $fillable = [
         'title',
         'body',

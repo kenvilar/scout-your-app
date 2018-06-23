@@ -4,10 +4,24 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Laravel\Scout\Searchable;
 
 class User extends Authenticatable
 {
-    use Notifiable;
+    use Notifiable, Searchable;
+
+    /**
+     * Customize the elements that will be searchable
+     *
+     * @return array
+     */
+    public function toSearchableArray()
+    {
+        return [
+            'name',
+            'email',
+        ];
+    }
 
     /**
      * The attributes that are mass assignable.
