@@ -15,13 +15,13 @@ class User extends Authenticatable
      *
      * @return array
      */
-    public function toSearchableArray()
+    /*public function toSearchableArray()
     {
         return [
             'name',
             'email',
         ];
-    }
+    }*/
 
     /**
      * The attributes that are mass assignable.
