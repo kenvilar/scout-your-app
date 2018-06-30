@@ -29,6 +29,11 @@ class PostController extends Controller
         return view('posts.search')->with('results', $results);
     }
 
+    public function searchjs()
+    {
+        return view('posts.searchjs');
+    }
+
     /**
      * Display a listing of the resource.
      *
