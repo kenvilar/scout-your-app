@@ -69,8 +69,6 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        $post = Post::query()->findOrFail($post);
-
         return view('posts.show', compact('post'));
     }
 
@@ -100,7 +98,7 @@ class PostController extends Controller
     {
         $this->validate($request, [
             'title' => 'required|max:255',
-            'content' => 'required',
+            'body' => 'required',
         ]);
 
         $post = Post::query()->findOrFail($post->id);
