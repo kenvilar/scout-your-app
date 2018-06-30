@@ -5,12 +5,12 @@
         <h1>Search for Posts</h1>
         <form action="{{ route('posts.search') }}" method="get">
             {{ csrf_field() }}
-
             <div class="input-group">
-                <input type="text" name="q" class="form-control input-lg" placeholder="Search for a post..." value="{{ old('q') }}"/>
+                <input type="text" name="q" class="form-control input-lg" placeholder="Search for a post..."
+                       value="{{ old('q') }}"/>
                 <span class="input-group-btn">
-          <button class="btn btn-default btn-lg" type="submit">Search</button>
-        </span>
+                    <button class="btn btn-default btn-lg" type="submit">Search</button>
+                </span>
             </div>
         </form>
         <hr />
@@ -18,26 +18,28 @@
         @foreach ($results as $post)
             <div class="row" style="margin-top: 20px;">
                 <div class="col-md-8">
-                    <a href="{{ route('posts.show', $post->id) }}"><h3>{{ $post->title }}</h3></a>
+                    <a href="{{ route('posts.show', $post->id) }}">
+                        <h3>{{ $post->title }}</h3>
+                    </a>
                 </div>
                 <div class="col-md-4">
-                    @if ($post->published)
-                        <h4><span class="label label-success pull-right">PUBLISHED</span><h4>
-                                @else
-                                    <h4><span class="label label-default pull-right">DRAFT</span><h4>
-                    @endif
+                    <h4>
+                        @if ($post->published)
+                            <span class="label label-success pull-right">PUBLISHED</span>
+                        @else
+                            <span class="label label-default pull-right">DRAFT</span>
+                        @endif
+                    </h4>
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-12">
-                    <p>
-                        {{ str_limit($post->body, 250) }}
-                    </p>
+                    <p>{{ str_limit($post->body, 250) }}</p>
                 </div>
             </div>
         @endforeach
 
-        @if (count($results) > 0)
+        @if (count($results))
             <hr />
 
             <div class="text-center">

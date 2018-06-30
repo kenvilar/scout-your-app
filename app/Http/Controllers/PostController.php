@@ -14,6 +14,22 @@ class PostController extends Controller
     }
 
     /**
+     * @param Request $request
+     * @return $this
+     */
+    public function search(Request $request)
+    {
+        if ($request->has('q')) {
+            $request->flashOnly('q');
+            $results = Post::search($request->q)->paginate(10);
+        } else {
+            $results = [];
+        }
+
+        return view('posts.search')->with('results', $results);
+    }
+
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
